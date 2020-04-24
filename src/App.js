@@ -1,25 +1,35 @@
-import React from 'react';
-import logo from './logo.svg';
+import React, {useEffect} from 'react';
 import './App.css';
+import { useDispatch, useSelector } from 'react-redux'
+import {fetchRooms} from "./redux/appReducer";
+import {Header} from "./components/header/Header";
+import {Main} from "./components/main/Main";
+import {Services} from "./components/Services/Services";
+import FeaturedContainer from "./components/Featured/FeaturedContainer";
+import {HashRouter, Route} from "react-router-dom";
+import RoomContainer from "./components/Room/RoomContainer";
+import RoomsContainer from "./components/Rooms/RoomsContainer";
 
 function App() {
-  return (
+
+  const dispatch= useDispatch()
+  useEffect(()=>{
+      dispatch(fetchRooms())
+  },[])
+
+
+    return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <HashRouter>
+         <Header/>
+          <Route exact path='/'>  <Main/> </Route>
+          <Route exact path='/'>    <Services/> </Route>
+          <Route exact path='/'>  <FeaturedContainer/> </Route>
+          <Route exact path='/rooms/:roomId' component={RoomContainer}/>
+          <Route exact path='/rooms/' component={RoomsContainer}/>
+      </HashRouter>
     </div>
+
   );
 }
 

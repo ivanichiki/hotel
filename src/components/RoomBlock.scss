@@ -1,0 +1,89 @@
+$mobile: 1160px;
+
+
+@mixin mobile {
+  @media screen and (max-width: #{$mobile}) {
+    @content
+  }
+}
+
+
+
+.room_block_wrapper{
+  box-shadow: 0 0 10px black;
+  background: #cfcfcf;
+  position: relative;
+
+  @include mobile{
+    margin-left: auto;
+    margin-right: auto;
+    margin-bottom: 30px;
+  }
+  .img_block{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+
+
+  }
+  .overlay{
+    width: 100%;
+    height: 204px;
+    position: absolute;
+    transition: opacity 500ms;
+    opacity: 0;
+    background: rgba(0,0,0,.5);
+
+  }
+  .btn{
+    margin-top: 0px;
+    position: absolute;
+    opacity: 0;
+  }
+
+  .img_room{
+
+    width: 363px;
+    height: 204px;
+    @include mobile{
+      width: 85vw;
+
+    }
+  }
+  .room-title{
+    text-align: center;
+    font-size: 19px;
+    padding-top: 6px;
+    padding-bottom: 6px;
+  }
+  .price{
+    position: absolute;
+    left: 0;
+    top: 0;
+    color: white;
+    background: rgba(0,0,0,.8);
+    padding: 5px 20px 10px 15px;
+    border-bottom-right-radius: 20px;
+    transition: opacity 600ms;
+    opacity: 1;
+    div{
+      font-size: 11px;
+    }
+  }
+
+}
+.room_block_wrapper:hover .price{
+
+  opacity: 0;
+}
+
+.room_block_wrapper:hover .overlay{
+
+  opacity: 1;
+}
+
+.room_block_wrapper:hover .btn{
+
+  opacity: 1;
+}

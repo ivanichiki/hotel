@@ -1,0 +1,36 @@
+$mobile: 1000px;
+
+@mixin mobile {
+  @media screen and (max-width: #{$mobile}) {
+    @content
+  }
+}
+
+
+
+.Header_wrapper{
+  background: #f7f7f7;
+  height: 64px;
+  position: fixed;
+  width: 100%;
+  top: 0;
+  z-index: 2;
+  .header{
+    margin-left: auto;
+    margin-right: auto;
+    height: 100%;
+    width: 1160px;
+    display: flex;
+    align-items: center;
+    @include mobile{
+      width: 100%;
+    }
+    .logo{
+      padding-top: 2px;
+      width: 250px;
+      height: 47px;
+    }
+
+  }
+
+}
